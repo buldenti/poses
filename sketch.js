@@ -98,7 +98,7 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, 1000);
 }
 
 function reloadPage() {
