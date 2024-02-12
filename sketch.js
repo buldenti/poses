@@ -50,9 +50,13 @@ function drawKeypoints()  {
       let keypoint = pose.keypoints[j];
       // Only draw an ellipse is the pose probability is bigger than 0.2
       if (keypoint.score > 0.2) {
-        fill(255, 0, 0);
-        noStroke();
-        ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
+        fill(0, 255, 0);
+        strokeWeight(1);
+        stroke(0,0,0);
+        text("SEM",keypoint.position.x, keypoint.position.y);
+        textSize(15);
+  
+        
       }
     }
   }
@@ -68,6 +72,7 @@ function drawSkeleton() {
       let partA = skeleton[j][0];
       let partB = skeleton[j][1];
       stroke(255, 0, 0);
+      strokeWeight(10);
       line(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
     }
   }
