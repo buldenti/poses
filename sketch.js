@@ -16,7 +16,7 @@ let midY;
 let myCanvas;
 
 function setup() {
-  myCanvas = createCanvas(windowWidth, windowHeight);
+  myCanvas = createCanvas(windowWidth, 1000);
   myCanvas.parent("canvas-container");
   video = createCapture(VIDEO);
 
