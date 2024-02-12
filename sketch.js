@@ -16,6 +16,7 @@ let midY;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  myCanvas.parent("canvas-container");
   video = createCapture(VIDEO);
 
   // Create a new poseNet method with a single detection
