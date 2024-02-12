@@ -11,6 +11,8 @@ PoseNet example using p5.js
 let video;
 let poseNet;
 let poses = [];
+let midX;
+let midY;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -25,6 +27,7 @@ function setup() {
   });
   // Hide the video element, and just show the canvas
   video.hide();
+  
 }
 
 function modelReady() {
@@ -32,7 +35,9 @@ function modelReady() {
 }
 
 function draw() {
-  image(video, 0, 0, video.width, video.width * video.height / video.width);
+  midX = (width - video.width)/2;
+  midY = (height - video.height)/2;
+  image(video, midX, midY, video.width, video.width * video.height / video.width);
 
   // We can call both functions to draw all keypoints and the skeletons
   drawKeypoints();
@@ -53,6 +58,7 @@ function drawKeypoints()  {
         fill(0, 255, 0);
         strokeWeight(1);
         stroke(0,0,0);
+        textAlign(CENTER,CENTER);
         text("SEM",keypoint.position.x, keypoint.position.y);
         textSize(15);
   
