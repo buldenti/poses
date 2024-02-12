@@ -27,6 +27,7 @@ function setup() {
   });
   // Hide the video element, and just show the canvas
   video.hide();
+  windowResized();
   
 }
 
@@ -37,11 +38,14 @@ function modelReady() {
 function draw() {
   midX = (width - video.width)/2;
   midY = (height - video.height)/2;
-  image(video, midX, midY, video.width, video.width * video.height / video.width);
-
+  push();
+  translate(midX, midY);
+  image(video, 0, 0, video.width, video.width * video.height / video.width);
+  
   // We can call both functions to draw all keypoints and the skeletons
   drawKeypoints();
   drawSkeleton();
+  pop();
 }
 
 // A function to draw ellipses over the detected keypoints
