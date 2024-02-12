@@ -1,2 +1,4 @@
-# poses
-Posenet test on Zaspberry Pi
+# Poses
+PoseNet test on Raspberry Pi
+
+![QR Code](qr-code.png)
