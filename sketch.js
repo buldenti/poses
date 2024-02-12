@@ -13,7 +13,7 @@ let poseNet;
 let poses = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight;
+  createCanvas(windowWidth, windowHeight);
   video = createCapture(VIDEO);
 
   // Create a new poseNet method with a single detection
