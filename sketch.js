@@ -32,7 +32,7 @@ function modelReady() {
 }
 
 function draw() {
-  image(video, 0, 0, video.width, video.width * video.width / video.height);
+  image(video, 0, 0, video.width, video.width * video.height / video.width);
 
   // We can call both functions to draw all keypoints and the skeletons
   drawKeypoints();
