@@ -28,7 +28,7 @@ function setup() {
 }
 
 function modelReady() {
-  select('#status').html('Model Loaded');
+  console.log("Model Loaded");
 }
 
 function draw() {
