@@ -30,14 +30,19 @@ function setup() {
   // Hide the video element, and just show the canvas
   video.hide();
   windowResized();
+  location.reload(true);
+  
+  
   
 }
 
 function modelReady() {
   console.log("Model Loaded");
+  
 }
 
 function draw() {
+  
   midX = (width - video.width)/2;
   midY = (height - video.height)/2;
   push();
