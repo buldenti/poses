@@ -39,10 +39,12 @@ function setup() {
   video.hide();
   reloadPage();
   setTimeout(firstResize, 10000);
+  console.log(deviceOrientation);
 }
 
 function modelReady() {
   console.log("Model Loaded");
+  console.log(deviceOrientation);
   resizeCanvas(windowWidth, video.height * scaleFactor);
 }
 
