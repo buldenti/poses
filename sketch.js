@@ -39,7 +39,6 @@ function setup() {
   video.hide();
   reloadPage();
   setTimeout(firstResize, 10000);
-  console.log(deviceOrientation);
 }
 
 function modelReady() {
@@ -52,7 +51,11 @@ function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  translate(width / 2 - (video.width * scaleFactor) / 2, 10);
+  if (deviceOrientation === undefined) {
+    translate(100, 10);
+  } else {
+    translate(width / 2 - (video.width * scaleFactor) / 2, 10);
+  }
   scale(scaleFactor);
 
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
