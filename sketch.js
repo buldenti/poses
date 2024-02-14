@@ -46,7 +46,7 @@ function draw() {
   midX = (width - video.width)/2;
   midY = (height - video.height)/2;
   push();
-  translate(midX, midY);
+  translate(width/2, 50);
   image(video, 0, 0, video.width * 2 , (video.width * video.height / video.width) * 2);
   
   // We can call both functions to draw all keypoints and the skeletons
