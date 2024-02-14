@@ -50,7 +50,7 @@ function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  translate(width / 2 - (video.width * scaleFactor) / 2, 10);
+  translate(width - (video.width * scaleFactor) / 2, 10);
   scale(scaleFactor);
 
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
