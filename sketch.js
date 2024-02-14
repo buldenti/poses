@@ -19,6 +19,7 @@ function setup() {
   myCanvas = createCanvas(windowWidth, 700);
   myCanvas.parent("canvas-container");
   video = createCapture(VIDEO);
+  video.resize(video.width * 1.5, video.height *1.5);
 
   // Create a new poseNet method with a single detection
   poseNet = ml5.poseNet(video, modelReady);
@@ -30,7 +31,7 @@ function setup() {
   // Hide the video element, and just show the canvas
   video.hide();
   windowResized();
- reloadPage();
+  reloadPage();
   
   
   
@@ -42,7 +43,7 @@ function modelReady() {
 }
 
 function draw() {
-  video.resize(video.width * 1.5, video.height *1.5);
+  // video.resize(video.width * 1.5, video.height *1.5);
   midX = (width - video.width)/2;
   midY = (height - video.height)/2;
   push();
