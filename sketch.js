@@ -38,7 +38,7 @@ function setup() {
   // Hide the video element, and just show the canvas
   video.hide();
   reloadPage();
-  setTimeout(windowResized, 5000);
+  setTimeout(firstResize, 10000);
 }
 
 function modelReady() {
@@ -50,7 +50,7 @@ function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  translate(width - (video.width * scaleFactor) / 2, 10);
+  translate(width / 2 - (video.width * scaleFactor) / 2, 10);
   scale(scaleFactor);
 
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
@@ -114,6 +114,18 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
+  resizeCanvas(windowWidth, video.height * scaleFactor);
+  if (width < 700) {
+    scaleFactor = 1;
+  }
+  if (width >= 700 && width <= 1200) {
+    scaleFactor = 2;
+  } else if (width > 1200) {
+    scaleFactor = 3;
+  }
+}
+
+function firstResize() {
   resizeCanvas(windowWidth, video.height * scaleFactor);
   if (width < 700) {
     scaleFactor = 1;
