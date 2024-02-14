@@ -19,7 +19,7 @@ function setup() {
   myCanvas = createCanvas(windowWidth, 700);
   myCanvas.parent("canvas-container");
   video = createCapture(VIDEO);
-  video.resize(video.width * 1.5, video.height *1.5);
+  //video.resize(video.width * 1.5, video.height *1.5);
 
   // Create a new poseNet method with a single detection
   poseNet = ml5.poseNet(video, modelReady);
