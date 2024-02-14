@@ -19,7 +19,7 @@ let hueChange = 0;
 let hueDirection = 1;
 let heartSize = 40;
 let s = 200;
-let scaleFactor = 3;
+let scaleFactor = 4;
 let firstH = 480;
 
 function setup() {
@@ -44,24 +44,16 @@ function setup() {
 function modelReady() {
   console.log("Model Loaded");
   console.log(deviceOrientation);
-  resizeCanvas(windowWidth, video.height * scaleFactor);
+  resizeCanvas(video.width * scaleFactor, video.height * scaleFactor);
 }
 
 function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  if (deviceOrientation == undefined) {
-    translate(400, 10);
-  } else {
-    translate(width / 2 - (video.width * scaleFactor) / 2, 10);
-  }
   scale(scaleFactor);
-
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
-
   // We can call both functions to draw all keypoints and the skeletons
-
   drawSkeleton();
   drawKeypoints();
 
@@ -119,7 +111,7 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(windowWidth, video.height * scaleFactor);
+  resizeCanvas(video.width * scaleFacto, video.height * scaleFactor);
   if (width < 700) {
     scaleFactor = 1;
   }
@@ -131,14 +123,16 @@ function windowResized() {
 }
 
 function firstResize() {
-  resizeCanvas(windowWidth, video.height * scaleFactor);
-  if (width < 700) {
+  resizeCanvas(video.width * scaleFacto, video.height * scaleFactor);
+  if (width < 1280) {
     scaleFactor = 1;
   }
-  if (width >= 700 && width <= 1200) {
+  if (width >= 1280 && width <= 1920) {
     scaleFactor = 2;
-  } else if (width > 1200) {
+  } else if (width > 1920 && width <= 2560) {
     scaleFactor = 3;
+  } else if (width > 2560 && width <= 3841) {
+    scaleFactor = 4;
   }
 }
 

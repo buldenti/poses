@@ -47,21 +47,29 @@
         display: block;
         margin: 0 auto;
       }
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem;
+      }
     </style>
   </head>
 
   <body>
     <script src="sketch.js"></script>
-    <div id="canvas-container"></div>
-    <div class="info-container">
-      <h1 class="info-heading">Programming for Artists - Machine Learning Demo</h1>
-      <p>
-        Using PoseNet model to estimate poses and draw skeleton lines and write SEM on pose keypoints. Running on an
-        underpowered Rasberry Pi 4 so the framerate is choppy. To try the demo on your phone, go to
-        https://buldendi.github.io/poses/ Made with p5.js and ml5.js and demo code from ml5.js documentation site. The
-        original PoseNet model was ported to TensorFlow.js by Dan Oved.
-      </p>
-      <img class="qr-code" width="300px" height="300px" src="qr-code.png" alt="qr-code" />
+    <div class="container">
+      <div id="canvas-container"></div>
+      <div class="info-container">
+        <h1 class="info-heading">Programming for Artists - Machine Learning Demo</h1>
+        <p>
+          Using PoseNet model to estimate poses and draw skeleton lines and write SEM on pose keypoints. Running on an
+          underpowered Rasberry Pi 4 so the framerate is choppy. To try the demo on your phone, go to
+          https://buldendi.github.io/poses/ Made with p5.js and ml5.js and demo code from ml5.js documentation site. The
+          original PoseNet model was ported to TensorFlow.js by Dan Oved.
+        </p>
+        <img class="qr-code" width="300px" height="300px" src="qr-code.png" alt="qr-code" />
+      </div>
     </div>
   </body>
 </html>
