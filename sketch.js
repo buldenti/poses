@@ -42,12 +42,13 @@ function modelReady() {
 }
 
 function draw() {
-  
+  video.resize(video.width * 1.5, video.height *1.5);
   midX = (width - video.width)/2;
   midY = (height - video.height)/2;
   push();
-  translate(width/2, 50);
-  image(video, 0, 0, video.width * 2 , (video.width * video.height / video.width) * 2);
+  translate(midX, 50);
+ 
+  image(video, 0, 0, video.width, video.width * video.height / video.width);
   
   // We can call both functions to draw all keypoints and the skeletons
   drawKeypoints();
