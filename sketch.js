@@ -52,7 +52,7 @@ function draw() {
 
   push();
   if (deviceOrientation === undefined) {
-    translate(100, 10);
+    translate(400, 10);
   } else {
     translate(width / 2 - (video.width * scaleFactor) / 2, 10);
   }
