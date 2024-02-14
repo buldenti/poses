@@ -8,6 +8,7 @@ ml5 Example
 PoseNet example using p5.js
 === */
 
+// Create a constraints object.
 let video;
 let poseNet;
 let poses = [];
@@ -16,49 +17,45 @@ let midY;
 let myCanvas;
 
 function setup() {
-  myCanvas = createCanvas(windowWidth, 700);
+  myCanvas = createCanvas(1300, 730);
   myCanvas.parent("canvas-container");
   video = createCapture(VIDEO);
-  //video.resize(video.width * 1.5, video.height *1.5);
 
   // Create a new poseNet method with a single detection
   poseNet = ml5.poseNet(video, modelReady);
   // This sets up an event that fills the global variable "poses"
   // with an array every time new poses are detected
-  poseNet.on('pose', function(results) {
+  poseNet.on("pose", function (results) {
     poses = results;
   });
   // Hide the video element, and just show the canvas
   video.hide();
   windowResized();
   reloadPage();
-  
-  
-  
 }
 
 function modelReady() {
   console.log("Model Loaded");
-  
 }
 
 function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
-  midX = (width - video.width)/2;
-  midY = (height - video.height)/2;
+
   push();
-  translate(midX, 50);
- 
-  image(video, 0, 0, video.width, video.width * video.height / video.width);
-  
+  scale(2);
+  midX = (width - video.width * 2.5) / 2;
+  translate(midX, 10);
+  image(video, 0, 0, video.width, (video.width * video.height) / video.width);
+
   // We can call both functions to draw all keypoints and the skeletons
   drawKeypoints();
   drawSkeleton();
+
   pop();
 }
 
 // A function to draw ellipses over the detected keypoints
-function drawKeypoints()  {
+function drawKeypoints() {
   // Loop through all the poses detected
   for (let i = 0; i < poses.length; i++) {
     // For each pose detected, loop through all the keypoints
@@ -70,12 +67,10 @@ function drawKeypoints()  {
       if (keypoint.score > 0.2) {
         fill(0, 255, 0);
         strokeWeight(1);
-        stroke(0,0,0);
-        textAlign(CENTER,CENTER);
-        text("SEM",keypoint.position.x, keypoint.position.y);
+        stroke(0, 0, 0);
+        textAlign(CENTER, CENTER);
+        text("SEM", keypoint.position.x, keypoint.position.y);
         textSize(15);
-  
-        
       }
     }
   }
@@ -100,33 +95,28 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(windowWidth, 700);
+  resizeCanvas(windowWidth, 730);
 }
 
 function reloadPage() {
+  // The last "domLoading" Time //
 
-// The last "domLoading" Time //
+  var currentDocumentTimestamp = new Date(performance.timing.domLoading).getTime();
 
-var currentDocumentTimestamp =
+  // Current Time //
 
-new Date(performance.timing.domLoading).getTime();
+  var now = Date.now();
 
-// Current Time //
+  // Ten Seconds //
 
-var now = Date.now();
+  var tenSec = 10 * 1000;
 
-// Ten Seconds //
+  // Plus Ten Seconds //
 
-var tenSec = 10 * 1000;
+  var plusTenSec = currentDocumentTimestamp + tenSec;
 
-// Plus Ten Seconds //
-
-var plusTenSec = currentDocumentTimestamp + tenSec;
-
-if (now > plusTenSec) {
-
-location.reload(true);
-
-} else {}
-
+  if (now > plusTenSec) {
+    location.reload(true);
+  } else {
+  }
 }
