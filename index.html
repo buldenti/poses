@@ -15,9 +15,12 @@
         font-family: Arial, Helvetica, sans-serif;
         width: 100%;
         color: #ffffff;
+        min-width: 640px;
       }
 
       canvas {
+        width: 100%;
+        height: auto;
         display: block;
       }
 
@@ -31,6 +34,10 @@
       }
 
       .info-container > h1 {
+        font-size: 4rem;
+      }
+
+      .info-container > h2 {
         font-size: 3rem;
       }
 
@@ -39,19 +46,34 @@
       }
 
       #canvas-container {
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
       }
 
       .qr-code {
         display: block;
         margin: 0 auto;
+        padding-top: 4rem;
       }
 
       .container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-gap: 2rem;
+      }
+
+      a {
+        color: #00ff00;
+        text-decoration: none;
+      }
+      @media (min-width: 3045px) {
+        .container {
+          grid-template-columns: 1fr 1fr;
+        }
+        .info-container {
+          margin-top: 10rem;
+          margin-right: 2rem;
+        }
       }
     </style>
   </head>
@@ -61,12 +83,16 @@
     <div class="container">
       <div id="canvas-container"></div>
       <div class="info-container">
-        <h1 class="info-heading">Programming for Artists - Machine Learning Demo</h1>
+        <h1 class="info-heading">SEM 223 Programming for Artists</h1>
+        <h2>Machine Learning Demo</h2>
         <p>
           Using PoseNet model to estimate poses and draw skeleton lines and write SEM on pose keypoints. Running on an
-          underpowered Rasberry Pi 4 so the framerate is choppy. To try the demo on your phone, go to
-          https://buldendi.github.io/poses/ Made with p5.js and ml5.js and demo code from ml5.js documentation site. The
-          original PoseNet model was ported to TensorFlow.js by Dan Oved.
+          underpowered Rasberry Pi 4 so the framerate is choppy.
+        </p>
+        <p>
+          To try the demo on your phone, go to
+          <a href="https://buldendi.github.io/poses/">buldenti.github.io/poses/</a> Made with p5.js and ml5.js and demo
+          code from ml5.js documentation site. The original PoseNet model was ported to TensorFlow.js by Dan Oved.
         </p>
         <img class="qr-code" width="300px" height="300px" src="qr-code.png" alt="qr-code" />
       </div>

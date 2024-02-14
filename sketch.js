@@ -19,7 +19,7 @@ let hueChange = 0;
 let hueDirection = 1;
 let heartSize = 40;
 let s = 200;
-let scaleFactor = 4;
+let scaleFactor = 1;
 let firstH = 480;
 
 function setup() {
@@ -38,7 +38,7 @@ function setup() {
   // Hide the video element, and just show the canvas
   video.hide();
   reloadPage();
-  setTimeout(firstResize, 10000);
+  setTimeout(setScaleFactor, 10000);
 }
 
 function modelReady() {
@@ -108,32 +108,30 @@ function drawSkeleton() {
   }
 }
 
+function setScaleFactor() {
+  if (video.width) {
+    if (windowWidth <= 640) {
+      scaleFactor = 1;
+    }
+    if (windowWidth > 641 && windowWidth <= 1280) {
+      scaleFactor = 1 + video.width / windowWidth;
+      console.log("scale" + scaleFactor);
+    } else if (windowWidth > 1280 && windowWidth <= 1920) {
+      scaleFactor = 2 + video.width / windowWidth;
+    } else if (windowWidth > 1920 && windowWidth <= 2560) {
+      scaleFactor = 3 + video.width / windowWidth;
+    } else if (windowWidth > 2560 && windowWidth <= 3841) {
+      scaleFactor = 4;
+    }
+  }
+  resizeCanvas(video.width * scaleFactor, video.height * scaleFactor);
+}
+
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(video.width * scaleFacto, video.height * scaleFactor);
-  if (width < 700) {
-    scaleFactor = 1;
-  }
-  if (width >= 700 && width <= 1200) {
-    scaleFactor = 2;
-  } else if (width > 1200) {
-    scaleFactor = 3;
-  }
-}
-
-function firstResize() {
-  resizeCanvas(video.width * scaleFacto, video.height * scaleFactor);
-  if (width < 1280) {
-    scaleFactor = 1;
-  }
-  if (width >= 1280 && width <= 1920) {
-    scaleFactor = 2;
-  } else if (width > 1920 && width <= 2560) {
-    scaleFactor = 3;
-  } else if (width > 2560 && width <= 3841) {
-    scaleFactor = 4;
-  }
+  setScaleFactor();
+  resizeCanvas(video.width * scaleFactor, video.height * scaleFactor);
 }
 
 function reloadPage() {
