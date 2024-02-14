@@ -18,12 +18,15 @@ let myCanvas;
 let hueChange = 0;
 let hueDirection = 1;
 let heartSize = 40;
+let s = 200;
+let scaleFactor = 3;
+let firstH = 480;
 
 function setup() {
-  myCanvas = createCanvas(3840, 1450);
+  video = createCapture(VIDEO);
+  myCanvas = createCanvas(windowWidth, firstH);
   myCanvas.parent("canvas-container");
   colorMode(HSB);
-  video = createCapture(VIDEO);
 
   // Create a new poseNet method with a single detection
   poseNet = ml5.poseNet(video, modelReady);
@@ -34,21 +37,21 @@ function setup() {
   });
   // Hide the video element, and just show the canvas
   video.hide();
-  windowResized();
   reloadPage();
 }
 
 function modelReady() {
   console.log("Model Loaded");
+  resizeCanvas(windowWidth, video.height * scaleFactor);
 }
 
 function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  scale(3);
+  translate(width / 2 - (video.width * scaleFactor) / 2, 10);
+  scale(scaleFactor);
 
-  translate(1920 / 6, 10);
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
 
   // We can call both functions to draw all keypoints and the skeletons
@@ -110,7 +113,15 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(3840, 1450);
+  resizeCanvas(windowWidth, video.height * scaleFactor);
+  if (width < 700) {
+    scaleFactor = 1;
+  }
+  if (width >= 700 && width <= 1200) {
+    scaleFactor = 2;
+  } else if (width > 1200) {
+    scaleFactor = 3;
+  }
 }
 
 function reloadPage() {
