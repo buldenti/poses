@@ -51,7 +51,7 @@ function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  if (deviceOrientation === undefined) {
+  if (deviceOrientation == undefined) {
     translate(400, 10);
   } else {
     translate(width / 2 - (video.width * scaleFactor) / 2, 10);
