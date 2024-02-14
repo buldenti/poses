@@ -38,6 +38,7 @@ function setup() {
   // Hide the video element, and just show the canvas
   video.hide();
   reloadPage();
+  setTimeout(windowResized, 5000);
 }
 
 function modelReady() {
