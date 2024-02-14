@@ -15,10 +15,14 @@ let poses = [];
 let midX;
 let midY;
 let myCanvas;
+let hueChange = 0;
+let hueDirection = 1;
+let heartSize = 40;
 
 function setup() {
-  myCanvas = createCanvas(1300, 730);
+  myCanvas = createCanvas(3840, 1450);
   myCanvas.parent("canvas-container");
+  colorMode(HSB);
   video = createCapture(VIDEO);
 
   // Create a new poseNet method with a single detection
@@ -42,16 +46,23 @@ function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
 
   push();
-  scale(2);
-  midX = (width - video.width * 2.5) / 2;
-  translate(midX, 10);
+  scale(3);
+
+  translate(1920 / 6, 10);
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
 
   // We can call both functions to draw all keypoints and the skeletons
-  drawKeypoints();
+
   drawSkeleton();
+  drawKeypoints();
 
   pop();
+
+  hueChange = hueChange + hueDirection;
+
+  if (hueChange >= 255 || hueChange <= 0) {
+    hueDirection = hueDirection * -1;
+  }
 }
 
 // A function to draw ellipses over the detected keypoints
@@ -65,8 +76,12 @@ function drawKeypoints() {
       let keypoint = pose.keypoints[j];
       // Only draw an ellipse is the pose probability is bigger than 0.2
       if (keypoint.score > 0.2) {
-        fill(0, 255, 0);
         strokeWeight(1);
+
+        stroke(hueChange, 255, 255);
+        fill(24, 200, 200, 50);
+        heart(keypoint.position.x, keypoint.position.y - heartSize / 3, heartSize);
+        fill(100, 255, 255);
         stroke(0, 0, 0);
         textAlign(CENTER, CENTER);
         text("SEM", keypoint.position.x, keypoint.position.y);
@@ -85,7 +100,7 @@ function drawSkeleton() {
     for (let j = 0; j < skeleton.length; j++) {
       let partA = skeleton[j][0];
       let partB = skeleton[j][1];
-      stroke(255, 0, 0);
+      stroke(hueChange, 255, 255);
       strokeWeight(10);
       line(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
     }
@@ -95,7 +110,7 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(windowWidth, 730);
+  resizeCanvas(3840, 1450);
 }
 
 function reloadPage() {
@@ -119,4 +134,14 @@ function reloadPage() {
     location.reload(true);
   } else {
   }
+}
+
+// heart function from Mithru
+// https://editor.p5js.org/Mithru/sketches/Hk1N1mMQg
+function heart(x, y, size) {
+  beginShape();
+  vertex(x, y);
+  bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
+  bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
+  endShape(CLOSE);
 }
