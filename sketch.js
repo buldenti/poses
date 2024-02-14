@@ -16,7 +16,7 @@ let midY;
 let myCanvas;
 
 function setup() {
-  myCanvas = createCanvas(windowWidth, 1000);
+  myCanvas = createCanvas(windowWidth, 700);
   myCanvas.parent("canvas-container");
   video = createCapture(VIDEO);
 
@@ -47,7 +47,7 @@ function draw() {
   midY = (height - video.height)/2;
   push();
   translate(midX, midY);
-  image(video, 0, 0, video.width, video.width * video.height / video.width);
+  image(video, 0, 0, video.width * 2 , (video.width * video.height / video.width) * 2);
   
   // We can call both functions to draw all keypoints and the skeletons
   drawKeypoints();
@@ -98,7 +98,7 @@ function drawSkeleton() {
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
-  resizeCanvas(windowWidth, 1000);
+  resizeCanvas(windowWidth, 700);
 }
 
 function reloadPage() {
