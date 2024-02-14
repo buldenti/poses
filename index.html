@@ -29,8 +29,8 @@
       }
 
       .info-container {
-        max-width: 1500px;
-        margin: 0 auto;
+        max-width: 640px;
+        margin: 0 1rem;
       }
 
       .info-container > h1 {
@@ -39,10 +39,13 @@
 
       .info-container > h2 {
         font-size: 3rem;
+        margin: 0 auto;
+        padding-bottom: 0.5rem;
       }
 
       .info-container > p {
         font-size: 2rem;
+        margin: 0 auto;
       }
 
       #canvas-container {
@@ -66,11 +69,18 @@
         color: #00ff00;
         text-decoration: none;
       }
+      @media (min-width: 641px) {
+        .info-container {
+          max-width: 700px;
+          margin: 0 1rem;
+        }
+      }
       @media (min-width: 3045px) {
         .container {
           grid-template-columns: 1fr 1fr;
         }
         .info-container {
+          max-width: 1500px;
           margin-top: 10rem;
           margin-right: 2rem;
         }
