@@ -23,13 +23,14 @@ let scaleFactor = 1;
 let firstH = 480;
 
 function setup() {
+  let options = { flipHorizontal: true };
   video = createCapture(VIDEO);
   myCanvas = createCanvas(windowWidth, firstH);
   myCanvas.parent("canvas-container");
   colorMode(HSB);
 
   // Create a new poseNet method with a single detection
-  poseNet = ml5.poseNet(video, modelReady);
+  poseNet = ml5.poseNet(video, options, modelReady);
   // This sets up an event that fills the global variable "poses"
   // with an array every time new poses are detected
   poseNet.on("pose", function (results) {
@@ -39,6 +40,7 @@ function setup() {
   video.hide();
   reloadPage();
   setScaleFactor();
+  setTimeout(setScaleFactor, 500);
   setTimeout(setScaleFactor, 10000);
 }
 
@@ -50,15 +52,16 @@ function modelReady() {
 
 function draw() {
   // video.resize(video.width * 1.5, video.height *1.5);
+  scale(scaleFactor);
 
   push();
-  scale(scaleFactor);
+  translate(video.width, 0);
+  scale(-1, 1);
   image(video, 0, 0, video.width, (video.width * video.height) / video.width);
+  pop();
   // We can call both functions to draw all keypoints and the skeletons
   drawSkeleton();
   drawKeypoints();
-
-  pop();
 
   hueChange = hueChange + hueDirection;
 
@@ -122,7 +125,7 @@ function setScaleFactor() {
     } else if (windowWidth > 1920 && windowWidth <= 2560) {
       scaleFactor = 3 + video.width / windowWidth;
     } else if (windowWidth > 2560 && windowWidth <= 3841) {
-      scaleFactor = 4;
+      scaleFactor = 5;
     }
   }
   resizeCanvas(video.width * scaleFactor, video.height * scaleFactor);
