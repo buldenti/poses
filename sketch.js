@@ -89,7 +89,7 @@ function drawKeypoints() {
         fill(100, 255, 255);
         stroke(0, 0, 0);
         textAlign(CENTER, CENTER);
-        text("SEM", keypoint.position.x, keypoint.position.y);
+        text(scaleFactor + windowWidth, keypoint.position.x, keypoint.position.y);
         textSize(15);
       }
     }
