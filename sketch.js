@@ -90,6 +90,7 @@ function drawKeypoints() {
         stroke(0, 0, 0);
         textAlign(CENTER, CENTER);
         text("scale" + scaleFactor, keypoint.position.x, keypoint.position.y);
+        text("width" + width, keypoint.position.x, keypoint.position.y + 20);
         text("width" + windowWidth, keypoint.position.x, keypoint.position.y + 20);
         textSize(15);
       }
@@ -117,10 +118,11 @@ function setScaleFactor() {
   if (video.width) {
     if (windowWidth <= 640) {
       scaleFactor = 1;
-    }
-    if (windowWidth > 641 && windowWidth <= 1280) {
+    } else if (windowWidth > 641 && windowWidth <= 1280) {
       scaleFactor = 1 + video.width / windowWidth;
-      console.log("scale" + scaleFactor);
+    } else if (windowWidth == 1723) {
+      // special case for Raspberry Pi 4 TV monitor running chromium in fullscreen kiosk
+      scaleFactor = 5;
     } else if (windowWidth > 1280 && windowWidth <= 1920) {
       scaleFactor = 2 + video.width / windowWidth;
     } else if (windowWidth > 1920 && windowWidth <= 2560) {
