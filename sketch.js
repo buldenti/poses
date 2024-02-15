@@ -89,7 +89,8 @@ function drawKeypoints() {
         fill(100, 255, 255);
         stroke(0, 0, 0);
         textAlign(CENTER, CENTER);
-        text(scaleFactor + windowWidth, keypoint.position.x, keypoint.position.y);
+        text("scale" + scaleFactor, keypoint.position.x, keypoint.position.y);
+        text("width" + windowWidth, keypoint.position.x, keypoint.position.y + 20);
         textSize(15);
       }
     }
