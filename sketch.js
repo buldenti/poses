@@ -25,7 +25,7 @@ let firstH = 480;
 function setup() {
   let options = { flipHorizontal: true };
   video = createCapture(VIDEO);
-  myCanvas = createCanvas(windowWidth, firstH);
+  myCanvas = createCanvas(windowWidth, windowHeight);
   myCanvas.parent("canvas-container");
   colorMode(HSB);
 
@@ -85,6 +85,7 @@ function drawKeypoints() {
 
         stroke(hueChange, 255, 255);
         fill(24, 200, 200, 50);
+
         heart(keypoint.position.x, keypoint.position.y - heartSize / 3, heartSize);
         fill(100, 255, 255);
         stroke(0, 0, 0);
@@ -124,9 +125,9 @@ function setScaleFactor() {
     } else if (windowWidth > 1280 && windowWidth <= 1920) {
       scaleFactor = 2 + video.width / windowWidth;
     } else if (windowWidth > 1920 && windowWidth <= 2560) {
-      scaleFactor = 3 + video.width / windowWidth;
+      scaleFactor = 2.6 + video.width / windowWidth;
     } else if (windowWidth > 2560 && windowWidth <= 3841) {
-      scaleFactor = 5;
+      scaleFactor = 4;
     }
   }
   resizeCanvas(video.width * scaleFactor, video.height * scaleFactor);
