@@ -38,14 +38,19 @@
       }
 
       .info-container > h2 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin: 0 auto;
         padding-bottom: 0.5rem;
       }
 
-      .info-container > p {
+      .info-container > h3 {
         font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .info-container > p {
+        font-size: 1.6rem;
         margin: 0 auto;
+        padding-top: 0;
       }
 
       #canvas-container {
@@ -71,22 +76,24 @@
       }
       @media (min-width: 641px) {
         .info-container {
-          max-width: 700px;
+          width: 630px;
           margin: 0 1rem;
         }
       }
       @media (min-width: 1045px) {
         #canvas-container {
           width: 100%;
+          height: auto;
           margin: 0;
           padding: 0;
         }
         .container {
-          grid-template-columns: 4fr 1fr;
+          width: 100%;
+          grid-template-columns: 1fr 1fr;
         }
         .info-container {
           width: 100%;
-          margin: 10rem 2rem 2rem 2rem;
+          margin: 2rem 2rem 2rem 2rem;
         }
       }
     </style>
@@ -97,8 +104,9 @@
     <div class="container">
       <div id="canvas-container"></div>
       <div class="info-container">
-        <h1 class="info-heading">SEM 223 Programming for Artists</h1>
-        <h2>Machine Learning Demo</h2>
+        <h1>Sculpture + Expanded Media</h1>
+        <h2 class="info-heading">SEM 223 Programming for Artists</h2>
+        <h3>Machine Learning Demo</h3>
         <p>Using PoseNet model to estimate poses and draw skeleton lines and write SEM on pose keypoints.</p>
         <br />
         <p>
